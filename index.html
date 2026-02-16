@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Minesweeper</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💣</text></svg>">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Main Menu Screen -->
+    <div id="main-menu" class="screen active">
+        <div class="menu-container">
+            <div class="best-times-container">
+                <h2>Best Times</h2>
+                <div class="best-times">
+                    <div class="best-time-item">
+                        <span class="difficulty-label">Easy:</span>
+                        <span id="best-time-easy" class="time-value">--:--</span>
+                    </div>
+                    <div class="best-time-item">
+                        <span class="difficulty-label">Medium:</span>
+                        <span id="best-time-medium" class="time-value">--:--</span>
+                    </div>
+                    <div class="best-time-item">
+                        <span class="difficulty-label">Hard:</span>
+                        <span id="best-time-hard" class="time-value">--:--</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-buttons">
+                <button id="play-btn" class="btn btn-primary" aria-label="Start Game">
+                    <span class="btn-icon">▶</span>
+                    <span class="btn-text">Play</span>
+                </button>
+                <button id="settings-btn" class="btn btn-secondary" aria-label="Open Settings">
+                    <span class="btn-icon">⚙</span>
+                    <span class="btn-text">Settings</span>
+                </button>
+                <button id="how-to-play-btn" class="btn btn-secondary" aria-label="How to Play">
+                    <span class="btn-icon">?</span>
+                    <span class="btn-text">How to Play</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button id="close-settings" class="close-btn" aria-label="Close Settings">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label for="theme-select">Theme</label>
+                    <select id="theme-select" class="select-input">
+                        <option value="classic">Classic</option>
+                        <option value="dark">Dark</option>
+                        <option value="ocean">Ocean</option>
+                        <option value="light">Light</option>
+                        <option value="rose">Rose</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <label>Difficulty</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="difficulty" value="easy">
+                            <span>Easy (9×9, 10 mines)</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="difficulty" value="medium">
+                            <span>Medium (16×16, 40 mines)</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="difficulty" value="hard">
+                            <span>Hard (16×30, 99 mines)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <label class="toggle-label">
+                        <span>Sound</span>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="sound-toggle" class="toggle-input">
+                            <span class="toggle-slider"></span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-settings" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- How to Play Modal -->
+    <div id="how-to-play-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>How to Play</h2>
+                <button id="close-how-to-play" class="close-btn" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body how-to-play-content">
+                <h3>Objective</h3>
+                <p>Reveal all cells without mines to win the game!</p>
+
+                <h3>Numbers</h3>
+                <p>Each number indicates how many mines are adjacent to that cell (including diagonals). Use these clues to deduce where the mines are!</p>
+
+                <h3>Strategy Tips</h3>
+                <ul class="tips-list">
+                    <li>Start by clicking corners or edges</li>
+                    <li>If a cell shows "1" and has only one unrevealed neighbor, that neighbor is a mine</li>
+                    <li>If a number's flags equal its value, all other neighbors are safe</li>
+                    <li>The mine counter shows remaining mines (can go negative if you over-flag)</li>
+                </ul>
+
+                <h3>Controls</h3>
+                <div class="controls-list">
+                    <div class="control-item">
+                        <strong>Mouse/Trackpad:</strong>
+                        <ul>
+                            <li><strong>Left Click</strong> - Reveal a cell</li>
+                            <li><strong>Right Click</strong> - Place/Remove flag</li>
+                        </ul>
+                    </div>
+                    <div class="control-item">
+                        <strong>Touch:</strong>
+                        <ul>
+                            <li><strong>Tap</strong> - Reveal a cell</li>
+                            <li><strong>Long Press</strong> - Place/Remove flag</li>
+                        </ul>
+                    </div>
+                    <div class="control-item">
+                        <strong>Keyboard:</strong>
+                        <ul>
+                            <li><strong>Space</strong> - Pause/Resume game</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+        <div class="game-container">
+            <div class="game-header">
+                <div class="mine-counter">
+                    <span class="counter-icon">💣</span>
+                    <span id="mine-count" class="counter-value">010</span>
+                </div>
+                <button id="pause-btn" class="header-btn" aria-label="Pause Game">
+                    <span class="pause-icon">⏸</span>
+                </button>
+                <button id="quit-to-menu-btn" class="header-btn" aria-label="Quit to Menu">
+                    <span class="quit-icon">✕</span>
+                </button>
+                <button id="restart-btn" class="header-btn restart-btn hidden" aria-label="Restart Game">
+                    <span class="restart-icon">🔄</span>
+                </button>
+                <div class="timer">
+                    <span class="timer-icon">⏱</span>
+                    <span id="timer-display" class="timer-value">000</span>
+                </div>
+            </div>
+
+            <div id="game-board" class="game-board">
+                <!-- Cells will be generated here -->
+            </div>
+
+            <div id="game-over-buttons" class="game-over-buttons hidden">
+                <h2 id="game-over-result-title" class="result-title"></h2>
+                <div id="new-record-banner" class="new-record hidden">
+                    <span class="record-icon">🏆</span>
+                    <span>New Best Time!</span>
+                </div>
+                <div class="game-over-buttons-row">
+                    <button id="play-again-btn" class="btn btn-primary">Play Again</button>
+                    <button id="main-menu-btn" class="btn btn-secondary">Main Menu</button>
+                </div>
+            </div>
+
+            <div id="pause-overlay" class="pause-overlay hidden">
+                <div class="pause-content">
+                    <h2>Paused</h2>
+                    <button id="resume-btn" class="btn btn-primary">Resume</button>
+                    <button id="quit-btn" class="btn btn-secondary">Quit to Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div id="game-over-modal" class="modal">
+        <div class="modal-content game-over-content">
+            <div class="modal-header">
+                <h2 id="game-over-title">Game Over</h2>
+            </div>
+            <div class="modal-body">
+                <p id="game-over-message" class="game-over-message"></p>
+                <div id="new-record" class="new-record hidden">
+                    <span class="record-icon">🏆</span>
+                    <span>New Best Time!</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="play-again-btn" class="btn btn-primary">Play Again</button>
+                <button id="main-menu-btn" class="btn btn-secondary">Main Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/ui.js"></script>
+</body>
+</html>

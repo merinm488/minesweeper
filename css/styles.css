@@ -1,0 +1,1200 @@
+/* ============================================
+   CSS VARIABLES - THEMES
+   ============================================ */
+
+/* Classic Theme (Windows 95/98 style) */
+[data-theme="classic"] {
+    --bg-primary: #a0a0a0;
+    --bg-secondary: #b0b0b0;
+    --bg-cell: #909090;
+    --bg-cell-revealed: #a8a8a8;
+    --bg-cell-hover: #959595;
+    --text-primary: #000000;
+    --text-secondary: #303030;
+    --border-light: #c0c0c0;
+    --border-dark: #707070;
+    --border-focus: #000080;
+    --cell-border-light: #b8b8b8;
+    --cell-border-dark: #787878;
+    --cell-revealed-border: #a0a0a0;
+    --mine-bg: #ff0000;
+    --flag-bg: #ffff00;
+    --incorrect-flag-bg: #ffcccc;
+    --btn-primary: #909090;
+    --btn-secondary: #a0a0a0;
+    --modal-bg: #b0b0b0;
+    --overlay-bg: rgba(0, 0, 0, 0.6);
+    --number-1: #0000ff;
+    --number-2: #008000;
+    --number-3: #ff0000;
+    --number-4: #000080;
+    --number-5: #800000;
+    --number-6: #008080;
+    --number-7: #000000;
+    --number-8: #808080;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --bg-primary: #2d2d2d;
+    --bg-secondary: #3d3d3d;
+    --bg-cell: #4a4a4a;
+    --bg-cell-revealed: #3d3d3d;
+    --bg-cell-hover: #5a5a5a;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --border-light: #5a5a5a;
+    --border-dark: #3d3d3d;
+    --border-focus: #ffffff;
+    --cell-border-light: #5a5a5a;
+    --cell-border-dark: #3d3d3d;
+    --cell-revealed-border: #3d3d3d;
+    --mine-bg: #ff4444;
+    --flag-bg: #ffcc00;
+    --incorrect-flag-bg: #882222;
+    --btn-primary: #505050;
+    --btn-secondary: #404040;
+    --modal-bg: #3d3d3d;
+    --overlay-bg: rgba(0, 0, 0, 0.7);
+    --number-1: #6666ff;
+    --number-2: #66ff66;
+    --number-3: #ff6666;
+    --number-4: #6666cc;
+    --number-5: #cc6666;
+    --number-6: #66cccc;
+    --number-7: #e0e0e0;
+    --number-8: #a0a0a0;
+}
+
+/* Ocean Theme */
+[data-theme="ocean"] {
+    --bg-primary: #e3f2fd;
+    --bg-secondary: #e1f5fe;
+    --bg-cell: #b3e5fc;
+    --bg-cell-revealed: #e1f5fe;
+    --bg-cell-hover: #81d4fa;
+    --text-primary: #01579b;
+    --text-secondary: #0277bd;
+    --border-light: #b3e5fc;
+    --border-dark: #81d4fa;
+    --border-focus: #0288d1;
+    --cell-border-light: #b3e5fc;
+    --cell-border-dark: #81d4fa;
+    --cell-revealed-border: #e1f5fe;
+    --mine-bg: #ff5252;
+    --flag-bg: #ffab40;
+    --incorrect-flag-bg: #ffccbc;
+    --btn-primary: #29b6f6;
+    --btn-secondary: #0288d1;
+    --modal-bg: #e1f5fe;
+    --overlay-bg: rgba(1, 87, 155, 0.3);
+    --number-1: #0000ff;
+    --number-2: #008000;
+    --number-3: #ff0000;
+    --number-4: #000080;
+    --number-5: #800000;
+    --number-6: #008080;
+    --number-7: #000000;
+    --number-8: #808080;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+    --bg-primary: #f5f5f5;
+    --bg-secondary: #ffffff;
+    --bg-cell: #e0e0e0;
+    --bg-cell-revealed: #fafafa;
+    --bg-cell-hover: #d5d5d5;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --border-light: #e0e0e0;
+    --border-dark: #cccccc;
+    --border-focus: #333333;
+    --cell-border-light: #e8e8e8;
+    --cell-border-dark: #d0d0d0;
+    --cell-revealed-border: #eeeeee;
+    --mine-bg: #ff6b6b;
+    --flag-bg: #ffd93d;
+    --incorrect-flag-bg: #ffcccc;
+    --btn-primary: #d0d0d0;
+    --btn-secondary: #e0e0e0;
+    --modal-bg: #ffffff;
+    --overlay-bg: rgba(0, 0, 0, 0.4);
+    --number-1: #0000ff;
+    --number-2: #008000;
+    --number-3: #ff0000;
+    --number-4: #333333;
+    --number-5: #666666;
+    --number-6: #008080;
+    --number-7: #000000;
+    --number-8: #999999;
+}
+
+/* Rose Theme */
+[data-theme="rose"] {
+    --bg-primary: #fff0f5;
+    --bg-secondary: #ffe4f1;
+    --bg-cell: #ffccd5;
+    --bg-cell-revealed: #ffe4f1;
+    --bg-cell-hover: #ffb3c7;
+    --text-primary: #880e4f;
+    --text-secondary: #a62669;
+    --border-light: #ffccd5;
+    --border-dark: #e8aad3;
+    --border-focus: #880e4f;
+    --cell-border-light: #ffccd5;
+    --cell-border-dark: #e8aad3;
+    --cell-revealed-border: #ffe4f1;
+    --mine-bg: #ff5c8d;
+    --flag-bg: #ff9800;
+    --incorrect-flag-bg: #ff6b6b;
+    --btn-primary: #d46a9e;
+    --btn-secondary: #c1175b;
+    --modal-bg: #ffe4f1;
+    --overlay-bg: rgba(196, 23, 91, 0.2);
+    --number-1: #0000ff;
+    --number-2: #008000;
+    --number-3: #ff0000;
+    --number-4: #000080;
+    --number-5: #800000;
+    --number-6: #008080;
+    --number-7: #880e4f;
+    --number-8: #a62669;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    touch-action: manipulation;
+}
+
+/* Prevent zoom on double tap for iOS */
+button, a, .cell {
+    touch-action: manipulation;
+}
+
+/* ============================================
+   SCREEN MANAGEMENT
+   ============================================ */
+
+.screen {
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.screen.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================
+   MAIN MENU
+   ============================================ */
+
+.menu-container {
+    text-align: center;
+    padding: 1rem 2rem 2rem 2rem;
+    max-width: 500px;
+    width: 100%;
+}
+
+.game-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 2px;
+}
+
+.best-times-container {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.best-times-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.best-times {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.best-time-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: var(--bg-primary);
+    border-radius: 8px;
+}
+
+.difficulty-label {
+    font-weight: 600;
+}
+
+.time-value {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 48px;
+    min-width: 200px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:focus {
+    outline: 3px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
+.btn-primary {
+    background: var(--btn-primary);
+    color: var(--text-primary);
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: var(--btn-primary);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.btn-secondary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+
+.btn-icon {
+    font-size: 1.3rem;
+}
+
+/* ============================================
+   MODALS
+   ============================================ */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay-bg);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--modal-bg);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border-light);
+    flex-shrink: 0;
+}
+
+.modal-header h2 {
+    font-size: 1.5rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+    background: var(--bg-cell);
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 2rem;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+}
+
+.modal-footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* ============================================
+   SETTINGS
+   ============================================ */
+
+.setting-group {
+    margin-bottom: 1.5rem;
+}
+
+.setting-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.select-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.select-input:focus {
+    outline: none;
+    border-color: var(--border-focus);
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.radio-label:hover {
+    background: var(--bg-cell);
+}
+
+.radio-label input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.toggle-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+    width: 100%;
+}
+
+.toggle-label > span:first-child {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.toggle-label:hover {
+    background: var(--bg-cell);
+}
+
+.toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.toggle-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--border-light);
+    transition: 0.3s;
+    border-radius: 15px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+.toggle-input:checked + .toggle-slider {
+    background-color: var(--btn-primary);
+}
+
+.toggle-input:checked + .toggle-slider:before {
+    transform: translateX(30px);
+}
+
+/* ============================================
+   HOW TO PLAY
+   ============================================ */
+
+.how-to-play-content h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+}
+
+.how-to-play-content h3:first-child {
+    margin-top: 0;
+}
+
+.how-to-play-content p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.controls-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.control-item ul {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.control-item li {
+    margin-bottom: 0.25rem;
+    color: var(--text-secondary);
+}
+
+.tips-list {
+    margin-left: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.tips-list li {
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   GAME SCREEN
+   ============================================ */
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    height: 100dvh;
+    max-width: 100%;
+    overflow: hidden;
+    padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
+}
+
+.game-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    margin: 0.5rem 0.5rem 2rem 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0.5rem;
+    z-index: 10;
+}
+
+.mine-counter,
+.timer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    min-width: 80px;
+    justify-content: center;
+}
+
+.counter-value,
+.timer-value {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    font-weight: bold;
+    min-width: 3ch;
+    text-align: center;
+}
+
+.header-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    background: var(--bg-cell);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    transition: all 0.2s ease;
+}
+
+.header-btn:hover {
+    background: var(--bg-cell-hover);
+    transform: scale(1.1);
+}
+
+.header-btn:active {
+    transform: scale(0.95);
+}
+
+/* ============================================
+   GAME BOARD
+   ============================================ */
+
+.game-board {
+    display: grid;
+    gap: 2px;
+    background: var(--border-light);
+    padding: 4px;
+    border-radius: 8px;
+    overflow: auto;
+    max-width: 100%;
+    flex: 1;
+    min-height: 0;
+    margin: 0 0.5rem 0.25rem 0.5rem;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* For easy mode (9x9), keep board compact while playing */
+.game-container:has(.game-board .cell:nth-child(81):nth-last-child(1)) .game-board {
+    flex: 0 0 auto;
+    align-self: center;
+}
+
+/* On desktop, ensure consistent spacing for easy mode */
+@media (min-width: 1024px) {
+    .game-container:has(.game-board .cell:nth-child(81):nth-last-child(1)) {
+        justify-content: flex-start;
+    }
+
+    .game-container:has(.game-board .cell:nth-child(81):nth-last-child(1)) .game-board {
+        flex: 0 0 auto;
+    }
+}
+
+/* When game over in easy mode on mobile, expand board to match medium/hard layout */
+@media (max-width: 1024px) {
+    .game-container.game-over-active:has(.game-board .cell:nth-child(81):nth-last-child(1)) .game-board {
+        flex: 1;
+        align-self: stretch;
+        place-content: start;
+        overflow-y: auto;
+    }
+}
+
+.cell {
+    width: 32px;
+    height: 32px;
+    background: var(--bg-cell);
+    border: 2px solid;
+    border-color: var(--cell-border-light) var(--cell-border-dark) var(--cell-border-dark) var(--cell-border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    transition: background 0.1s ease;
+    position: relative;
+}
+
+.cell:hover:not(.revealed) {
+    background: var(--bg-cell-hover);
+}
+
+.cell.revealed {
+    background: var(--bg-cell-revealed);
+    border: 1px solid var(--cell-revealed-border);
+    cursor: default;
+}
+
+.cell.flagged::after {
+    content: '🚩';
+    font-size: 1.2rem;
+}
+
+.cell.mine {
+    background: var(--mine-bg) !important;
+    border: 1px solid var(--cell-revealed-border);
+}
+
+.cell.mine::after {
+    content: '💣';
+    font-size: 1.2rem;
+}
+
+.cell.incorrect-flag {
+    background: var(--incorrect-flag-bg) !important;
+    border: 1px solid var(--cell-revealed-border);
+}
+
+.cell.incorrect-flag::after {
+    content: '🚩';
+    font-size: 1.2rem;
+}
+
+/* Number colors */
+.cell[data-number="1"] { color: var(--number-1); }
+.cell[data-number="2"] { color: var(--number-2); }
+.cell[data-number="3"] { color: var(--number-3); }
+.cell[data-number="4"] { color: var(--number-4); }
+.cell[data-number="5"] { color: var(--number-5); }
+.cell[data-number="6"] { color: var(--number-6); }
+.cell[data-number="7"] { color: var(--number-7); }
+.cell[data-number="8"] { color: var(--number-8); }
+
+/* ============================================
+   PAUSE OVERLAY
+   ============================================ */
+
+.pause-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    backdrop-filter: blur(10px);
+}
+
+.pause-overlay.hidden {
+    display: none;
+}
+
+.pause-content {
+    background: var(--modal-bg);
+    padding: 3rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+.pause-content h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.pause-content .btn {
+    margin-bottom: 1rem;
+}
+
+/* ============================================
+   GAME OVER BUTTONS (Below board)
+   ============================================ */
+
+.game-over-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.35rem;
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+    animation: fadeInUp 0.5s ease;
+    flex-shrink: 0;
+    width: 100%;
+    background: var(--bg-primary);
+}
+
+.game-over-buttons.hidden {
+    display: none;
+}
+
+.result-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.game-over-buttons-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   GAME OVER MODAL
+   ============================================ */
+
+.game-over-content {
+    text-align: center;
+}
+
+.game-over-message {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.new-record {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    color: #2c2c2c;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.new-record.hidden {
+    display: none;
+}
+
+.record-icon {
+    font-size: 2rem;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 2rem;
+    }
+
+    .menu-container {
+        padding: 1rem;
+    }
+
+    .modal-content {
+        max-height: calc(95vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    }
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 1rem;
+    }
+
+    .game-header {
+        padding: 0.5rem 0.75rem;
+        gap: 0.5rem;
+        margin: 0.25rem 0.5rem 2rem 0.5rem;
+    }
+
+    .cell {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+
+
+    .pause-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .game-over-buttons {
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+
+    .game-over-buttons-row {
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+    }
+
+    .game-over-buttons-row .btn {
+        min-width: 120px;
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .result-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+        min-width: 150px;
+    }
+
+    .best-times-container {
+        padding: 1rem;
+    }
+
+    .game-container {
+        padding: 0;
+    }
+
+    .game-header {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        margin: 0.5rem 0.5rem 2rem 0.5rem;
+        justify-content: space-between;
+        border-radius: 8px;
+    }
+
+    .mine-counter,
+    .timer {
+        flex: 1;
+        min-width: 45%;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .header-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+    }
+
+    /* Mine counter first (left), Timer last (right) */
+    .game-header > *:nth-child(1) {
+        order: 1;
+    }
+
+    .game-header > *:nth-child(5) {
+        order: 2;
+    }
+
+    /* Buttons in middle row */
+    .game-header > *:nth-child(2) {
+        order: 3;
+        width: calc(50% - 0.25rem);
+    }
+
+    .game-header > *:nth-child(3),
+    .game-header > *:nth-child(4) {
+        order: 4;
+        width: calc(50% - 0.25rem);
+    }
+
+    .cell {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+        border-width: 1px;
+    }
+
+
+    .counter-value,
+    .timer-value {
+        font-size: 1.2rem;
+        min-width: 2.5ch;
+    }
+
+    .cell.flagged::after,
+    .cell.mine::after,
+    .cell.incorrect-flag::after {
+        font-size: 1.3rem;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+    .game-header {
+        margin-bottom: 2rem;
+    }
+
+    .game-over-buttons-row .btn {
+        min-width: 100px;
+        padding: 0.65rem 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .cell {
+        width: 34px;
+        height: 34px;
+        font-size: 1rem;
+        border-width: 1px;
+    }
+
+
+    .cell.flagged::after,
+    .cell.mine::after,
+    .cell.incorrect-flag::after {
+        font-size: 1.1rem;
+    }
+}
+
+/* Larger screens */
+@media (min-width: 1024px) {
+    .game-header {
+        margin: 0.5rem 0 2rem 0;
+    }
+
+
+    .cell {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+    }
+}
+
+/* For very wide boards on large screens, allow scrolling */
+@media (min-height: 800px) {
+    /* No longer needed - flex: 1 on game-board handles this */
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.hidden {
+    display: none !important;
+}
+
+/* Prevent text selection */
+.no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+    outline: 3px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
+/* Scrollbar styling - Webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-dark);
+    border-radius: 6px;
+    border: 2px solid var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* Scrollbar styling - Firefox */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: var(--border-dark) var(--bg-secondary);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px);
+    }
+}
+
+@keyframes mineFlash {
+    0% {
+        background-color: #ff0000;
+        transform: scale(1.2);
+        box-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000;
+    }
+    50% {
+        background-color: #ff6666;
+        transform: scale(1.1);
+        box-shadow: 0 0 30px #ff0000, 0 0 60px #ff0000;
+    }
+    100% {
+        background-color: var(--mine-bg);
+        transform: scale(1);
+        box-shadow: none;
+    }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+.mine-exploded {
+    animation: mineFlash 0.6s ease-out forwards;
+}
+
+.btn:active {
+    animation: pulse 0.2s ease;
+}
