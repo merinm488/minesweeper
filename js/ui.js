@@ -57,6 +57,17 @@ const UI = {
             const settings = Storage.getSettings();
             Game.initialize(settings.difficulty);
             this.showScreen('game-screen');
+            // Start tutorial if this is the first time
+            Tutorial.init();
+        });
+
+        // Guided play button on main menu
+        document.getElementById('guided-play-menu-btn').addEventListener('click', () => {
+            // Make sure any existing game is properly cleaned up
+            if (Game.state.timerInterval) {
+                Game.stopTimer();
+            }
+            GuidedPlay.start();
         });
 
         document.getElementById('settings-btn').addEventListener('click', () => {
@@ -83,35 +94,66 @@ const UI = {
 
         // Game controls
         document.getElementById('pause-btn').addEventListener('click', () => {
-            Game.togglePause();
+            // Check if guided play demo is active
+            if (GuidedPlay.isActive) {
+                GuidedPlay.togglePause();
+            } else {
+                Game.togglePause();
+            }
         });
 
         document.getElementById('resume-btn').addEventListener('click', () => {
-            Game.togglePause();
+            // Check if guided play demo is active
+            if (GuidedPlay.isActive) {
+                GuidedPlay.togglePause();
+            } else {
+                Game.togglePause();
+            }
         });
 
         document.getElementById('restart-btn').addEventListener('click', () => {
+            Tutorial.cleanup(); // Clean up tutorial if active
             Game.initialize(Game.state.difficulty);
         });
 
         document.getElementById('quit-to-menu-btn').addEventListener('click', () => {
             Game.stopTimer();
+            Tutorial.cleanup(); // Clean up tutorial if active
+            GuidedPlay.stop(); // Clean up guided play if active
             this.updateBestTimes();
             this.showScreen('main-menu');
         });
 
         document.getElementById('quit-btn').addEventListener('click', () => {
             Game.stopTimer();
+            Tutorial.cleanup(); // Clean up tutorial if active
+            GuidedPlay.stop(); // Clean up guided play if active
             this.updateBestTimes();
             this.showScreen('main-menu');
         });
 
         // Game over buttons
         document.getElementById('play-again-btn').addEventListener('click', () => {
-            Game.initialize(Game.state.difficulty);
+            Tutorial.cleanup(); // Clean up tutorial if active
+
+            // Check if this is a demo game over
+            if (Game.state.isDemoGameOver) {
+                // Reset the demo flag
+                Game.state.isDemoGameOver = false;
+
+                // Start the demo again
+                GuidedPlay.start();
+            } else {
+                // Normal game - start a new game
+                Game.initialize(Game.state.difficulty);
+            }
         });
 
         document.getElementById('main-menu-btn').addEventListener('click', () => {
+            Tutorial.cleanup(); // Clean up tutorial if active
+            GuidedPlay.stop(); // Clean up guided play if active
+            // Reset demo flag if going to main menu
+            Game.state.isDemoGameOver = false;
             this.updateBestTimes();
             this.showScreen('main-menu');
         });
@@ -120,20 +162,11 @@ const UI = {
         document.addEventListener('keydown', (e) => {
             if (e.code === 'Space' && document.getElementById('game-screen').classList.contains('active')) {
                 e.preventDefault();
-                Game.togglePause();
-            }
-
-            // Debug mode shortcuts (only when game screen is active)
-            if (document.getElementById('game-screen').classList.contains('active')) {
-                // Shift+W = Instant win (no new record)
-                if (e.shiftKey && e.code === 'KeyW') {
-                    e.preventDefault();
-                    Game.debugWin(false);
-                }
-                // Shift+N = Instant win (always shows new best time banner)
-                if (e.shiftKey && e.code === 'KeyN') {
-                    e.preventDefault();
-                    Game.debugWin(true);
+                // Check if guided play demo is active
+                if (GuidedPlay.isActive) {
+                    GuidedPlay.togglePause();
+                } else {
+                    Game.togglePause();
                 }
             }
         });
@@ -226,12 +259,18 @@ const UI = {
         const board = document.getElementById('game-board');
         board.innerHTML = '';
 
+        // Ensure board is interactive (in case guided play left it disabled)
+        board.style.pointerEvents = '';
+
         // Set grid template
         board.style.gridTemplateColumns = `repeat(${Game.state.cols}, 1fr)`;
 
         // Reset buttons - show quit, hide restart
         document.getElementById('quit-to-menu-btn').classList.remove('hidden');
         document.getElementById('restart-btn').classList.add('hidden');
+
+        // Reset play-again button text to default (in case it was changed by demo)
+        document.getElementById('play-again-btn').textContent = 'Play Again';
 
         // Hide game over buttons
         document.getElementById('game-over-buttons').classList.add('hidden');
@@ -459,10 +498,18 @@ const UI = {
         const title = document.getElementById('game-over-result-title');
         const newRecord = document.getElementById('new-record-banner');
         const buttonsSection = document.getElementById('game-over-buttons');
+        const playAgainBtn = document.getElementById('play-again-btn');
         const gameContainer = document.getElementById('game-screen').querySelector('.game-container');
 
         // Add class to change layout for game over
         gameContainer.classList.add('game-over-active');
+
+        // Check if this is a demo game over
+        if (Game.state.isDemoGameOver) {
+            playAgainBtn.textContent = 'Watch Again';
+        } else {
+            playAgainBtn.textContent = 'Play Again';
+        }
 
         if (won) {
             title.textContent = 'You Win!';

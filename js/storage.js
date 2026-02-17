@@ -6,7 +6,8 @@ const Storage = {
     // Storage keys
     KEYS: {
         BEST_TIMES: 'minesweeper_best_times',
-        SETTINGS: 'minesweeper_settings'
+        SETTINGS: 'minesweeper_settings',
+        TUTORIAL_COMPLETED: 'minesweeper_tutorial_completed'
     },
 
     /**
@@ -99,6 +100,30 @@ const Storage = {
         } catch (error) {
             console.error('Error saving settings:', error);
             return false;
+        }
+    },
+
+    /**
+     * Check if tutorial has been completed
+     * @returns {boolean} True if tutorial was completed
+     */
+    hasCompletedTutorial() {
+        try {
+            return localStorage.getItem(this.KEYS.TUTORIAL_COMPLETED) === 'true';
+        } catch (error) {
+            console.error('Error reading tutorial status:', error);
+            return false;
+        }
+    },
+
+    /**
+     * Mark tutorial as completed
+     */
+    markTutorialCompleted() {
+        try {
+            localStorage.setItem(this.KEYS.TUTORIAL_COMPLETED, 'true');
+        } catch (error) {
+            console.error('Error saving tutorial status:', error);
         }
     }
 };

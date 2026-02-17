@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#1a1a2e">
     <title>Minesweeper</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💣</text></svg>">
+    <link rel="icon" href="icons/icon-192.svg" type="image/svg+xml">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192.svg">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -35,6 +38,10 @@
                 <button id="play-btn" class="btn btn-primary" aria-label="Start Game">
                     <span class="btn-icon">▶</span>
                     <span class="btn-text">Play</span>
+                </button>
+                <button id="guided-play-menu-btn" class="btn btn-secondary" aria-label="Watch Guided Play">
+                    <span class="btn-icon">🎬</span>
+                    <span class="btn-text">Watch Demo</span>
                 </button>
                 <button id="settings-btn" class="btn btn-secondary" aria-label="Open Settings">
                     <span class="btn-icon">⚙</span>
@@ -199,6 +206,33 @@
         </div>
     </div>
 
+    <!-- Tutorial Overlay -->
+    <div id="tutorial-overlay" class="tutorial-overlay hidden">
+        <div class="tutorial-spotlight"></div>
+        <div class="tutorial-tooltip">
+            <button id="tutorial-close-btn" class="tutorial-close-btn" aria-label="Close Tutorial">×</button>
+            <div class="tutorial-hand" id="tutorial-hand">👆</div>
+            <h3 id="tutorial-title" class="tutorial-title"></h3>
+            <p id="tutorial-message" class="tutorial-message"></p>
+            <div class="tutorial-progress">
+                <span id="tutorial-step-count">Step 1 of 5</span>
+            </div>
+            <div class="tutorial-buttons">
+                <!-- Buttons will be added dynamically by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Guided Play Overlay -->
+    <div id="guided-play-overlay" class="guided-play-overlay hidden">
+        <div class="guided-play-cursor" id="guided-play-cursor">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 5L35 15L15 20L20 35L5 5Z" fill="#FF6B6B" stroke="#000" stroke-width="2"/>
+            </svg>
+            <div class="guided-play-text-bubble" id="guided-play-text-bubble"></div>
+        </div>
+    </div>
+
     <!-- Game Over Modal -->
     <div id="game-over-modal" class="modal">
         <div class="modal-content game-over-content">
@@ -222,6 +256,32 @@
     <script src="js/storage.js"></script>
     <script src="js/audio.js"></script>
     <script src="js/game.js"></script>
+    <script src="js/tutorial.js"></script>
+    <script src="js/guidedPlay.js"></script>
     <script src="js/ui.js"></script>
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then((registration) => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+
+                        // Force update service worker to get new icons
+                        if (registration.waiting) {
+                            registration.waiting.postMessage('skipWaiting');
+                        }
+                    }, (err) => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+
+            // Listen for new service worker and refresh
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                window.location.reload();
+            });
+        }
+    </script>
 </body>
 </html>

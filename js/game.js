@@ -24,8 +24,7 @@ const Game = {
         timer: 0,
         timerInterval: null,
         difficulty: 'easy',
-        theme: 'classic',
-        debugForceNewRecord: false  // Debug mode flag to force new record banner
+        theme: 'classic'
     },
 
     /**
@@ -49,8 +48,7 @@ const Game = {
             timer: 0,
             timerInterval: null,
             difficulty: difficulty,
-            theme: this.state.theme,
-            debugForceNewRecord: false
+            theme: this.state.theme
         };
 
         // Create empty board
@@ -334,16 +332,9 @@ const Game = {
             // Double-check timer is stopped
             this.stopTimer();
 
-            // Check if we should force a new record (debug mode) or save normally
+            // Check if it's a new record
             let isNewRecord = false;
-            if (won && this.state.debugForceNewRecord) {
-                // Debug mode: force new record display and save the time
-                Storage.saveBestTime(this.state.difficulty, this.state.timer);
-                isNewRecord = true;
-                // Clear the debug flag
-                this.state.debugForceNewRecord = false;
-            } else if (won) {
-                // Normal mode: check if it's actually a new record
+            if (won) {
                 isNewRecord = Storage.saveBestTime(this.state.difficulty, this.state.timer);
             }
 
@@ -422,39 +413,5 @@ const Game = {
     setTheme(theme) {
         this.state.theme = theme;
         UI.applyTheme(theme);
-    },
-
-    /**
-     * Debug mode - Instant win for testing
-     * @param {boolean} forceNewRecord - Whether to force showing new best time banner
-     */
-    debugWin(forceNewRecord = false) {
-        // Store debug flag for gameOver to check
-        this.state.debugForceNewRecord = forceNewRecord;
-
-        // Place mines if first click
-        if (this.state.isFirstClick) {
-            this.state.isFirstClick = false;
-            // Place mines avoiding the first cell (0,0)
-            this.placeMines(0, 0);
-            UI.switchToRestartButton();
-        }
-
-        // Reveal all non-mine cells to simulate a win
-        for (let row = 0; row < this.state.rows; row++) {
-            for (let col = 0; col < this.state.cols; col++) {
-                const cell = this.state.board[row][col];
-                if (!cell.isMine && !cell.isRevealed) {
-                    cell.isRevealed = true;
-                    this.state.revealedCount++;
-                    UI.updateCell(row, col);
-                }
-            }
-        }
-
-        // Don't manipulate timer - just use whatever time is currently displayed
-
-        // Trigger win
-        this.gameOver(true);
     }
 };

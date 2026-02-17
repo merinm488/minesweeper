@@ -597,6 +597,295 @@ button, a, .cell {
 }
 
 /* ============================================
+   GUIDED PLAY
+   ============================================ */
+
+.guided-play-section {
+    margin-top: 2rem;
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.guided-play-section h3 {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.guided-play-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3000;
+    pointer-events: none;
+    display: none;
+}
+
+.guided-play-overlay:not(.hidden) {
+    display: block;
+}
+
+.guided-play-cursor {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    z-index: 3001;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+.guided-play-cursor svg {
+    width: 100%;
+    height: 100%;
+    animation: cursorBounce 1s ease-in-out infinite;
+}
+
+@keyframes cursorBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.guided-play-text-bubble {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.guided-play-text-bubble.visible {
+    opacity: 1;
+}
+
+/* Position text above the cursor (default) */
+.guided-play-text-bubble.position-top {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 10px;
+}
+
+.guided-play-text-bubble.position-top::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Position text to the side of cursor */
+.guided-play-text-bubble.position-side {
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    margin-left: 15px;
+}
+
+.guided-play-text-bubble.position-side::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-right-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Position text centered on screen */
+.guided-play-text-bubble.position-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    bottom: auto;
+}
+
+.cell.demo-highlight {
+    position: relative;
+    z-index: 3000;
+    animation: demoCellPulse 0.6s ease-in-out;
+}
+
+@keyframes demoCellPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.8);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 8px rgba(255, 107, 107, 0.4);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+    }
+}
+
+.cell.demo-flag-animation::after {
+    animation: demoFlagPlace 0.5s ease;
+}
+
+.cell.flagged {
+    position: relative;
+}
+
+.cell.flagged::after {
+    content: '🚩';
+    font-size: 1.2rem;
+}
+
+.cell.demo-flag-highlight {
+    position: relative;
+    z-index: 3000;
+}
+
+.cell.demo-flag-highlight::after {
+    content: '🚩';
+    animation: flagPulse 1s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+}
+
+@keyframes flagPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.demo-flag-emphasis {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    z-index: 10;
+    pointer-events: none;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    animation: flagPopIn 0.4s ease-out;
+}
+
+@keyframes flagPopIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.3);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes checkmarkPop {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes demoFlagPlace {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.3) rotate(10deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.cell.demo-number-highlight {
+    position: relative;
+    z-index: 3000;
+}
+
+.cell.demo-number-highlight::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    border: 3px solid #FFD700;
+    border-radius: 8px;
+    animation: numberGlow 0.8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes numberGlow {
+    0%, 100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+.demo-number-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 3px solid #FFD700;
+    border-radius: 50%;
+    animation: circlePulse 1s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes circlePulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.3);
+        opacity: 0.6;
+    }
+}
+
+@keyframes dashMove {
+    0% {
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-dashoffset: -12;
+    }
+}
+
+/* ============================================
    GAME SCREEN
    ============================================ */
 
@@ -797,7 +1086,7 @@ button, a, .cell {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 500;
+    z-index: 4000;
     backdrop-filter: blur(10px);
 }
 
@@ -966,6 +1255,32 @@ button, a, .cell {
 }
 
 @media (max-width: 480px) {
+    .guided-play-cursor {
+        width: 32px;
+        height: 32px;
+    }
+
+    .guided-play-text-bubble {
+        font-size: 0.85rem;
+        padding: 0.6rem 0.85rem;
+        margin-bottom: 8px;
+        white-space: normal;
+        max-width: 180px;
+        text-align: left;
+    }
+
+    .guided-play-text-bubble.position-side {
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: 10px;
+        margin-bottom: 0;
+    }
+
+    .guided-play-text-bubble.position-side::after {
+        display: block;
+    }
+
     .game-title {
         font-size: 1.5rem;
         margin-bottom: 1rem;
@@ -1197,4 +1512,310 @@ button, a, .cell {
 
 .btn:active {
     animation: pulse 0.2s ease;
+}
+
+/* ============================================
+   TUTORIAL
+   ============================================ */
+
+.tutorial-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    pointer-events: none;
+    /* No background - let user see the game board */
+}
+
+.tutorial-overlay.hidden {
+    display: none;
+}
+
+.tutorial-spotlight {
+    position: fixed;
+    border-radius: 8px;
+    box-shadow:
+        0 0 0 9999px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.5),
+        0 0 40px rgba(255, 255, 255, 0.4);
+    animation: spotlightPulse 2s ease-in-out infinite;
+    pointer-events: none;
+    transition: all 0.4s ease;
+    z-index: 2000;
+}
+
+@keyframes spotlightPulse {
+    0%, 100% {
+        box-shadow:
+            0 0 0 9999px rgba(0, 0, 0, 0.75),
+            0 0 20px rgba(255, 255, 255, 0.3),
+            0 0 40px rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        box-shadow:
+            0 0 0 9999px rgba(0, 0, 0, 0.75),
+            0 0 30px rgba(255, 255, 255, 0.5),
+            0 0 60px rgba(255, 255, 255, 0.3);
+    }
+}
+
+.tutorial-tooltip {
+    position: fixed;
+    background: var(--modal-bg);
+    opacity: 0.85;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 0.6rem 0.85rem;
+    max-width: 260px;
+    width: auto;
+    min-width: 180px;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    animation: tooltipSlideIn 0.4s ease;
+    pointer-events: auto;
+    z-index: 2001;
+    position: relative;
+    /* Ensure tooltip stays within viewport */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tutorial-close-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    line-height: 1;
+    padding: 0;
+}
+
+.tutorial-close-btn:hover {
+    background: var(--bg-cell);
+    color: var(--text-primary);
+    transform: scale(1.1);
+}
+
+.tutorial-close-btn:active {
+    transform: scale(0.95);
+}
+
+@keyframes tooltipSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.tutorial-hand {
+    display: none;
+}
+
+@keyframes handPoint {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(5px, -5px) rotate(-5deg);
+    }
+    50% {
+        transform: translate(0, -8px) rotate(0deg);
+    }
+    75% {
+        transform: translate(-5px, -5px) rotate(5deg);
+    }
+}
+
+/* Special animation for right-click/long-press tutorial */
+.tutorial-hand.flagging {
+    animation: handHold 1.5s ease-in-out infinite;
+}
+
+@keyframes handHold {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.tutorial-title {
+    font-size: 0.95rem;
+    font-weight: bold;
+    margin-bottom: 0.35rem;
+    color: #1a1a1a;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.tutorial-message {
+    color: #2a2a2a;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.tutorial-progress {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.7rem;
+    color: #3a3a3a;
+    font-weight: 500;
+}
+
+.tutorial-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.tutorial-buttons .btn {
+    min-width: auto;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+}
+
+/* Highlight target element */
+.cell.tutorial-target {
+    position: relative;
+    z-index: 2001;
+    animation: targetHighlight 1s ease-in-out infinite;
+}
+
+@keyframes targetHighlight {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.8);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 5px rgba(255, 255, 255, 1);
+    }
+}
+
+/* Tutorial flag animation */
+.cell.tutorial-flag-target::after {
+    animation: flagPlace 0.5s ease;
+}
+
+@keyframes flagPlace {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(10deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.guided-play-section .btn {
+    margin-top: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .tutorial-tooltip {
+        max-width: 250px;
+        padding: 0.7rem 0.85rem;
+    }
+
+    .tutorial-hand {
+        font-size: 1.6rem;
+    }
+
+    .tutorial-title {
+        font-size: 0.95rem;
+    }
+
+    .tutorial-message {
+        font-size: 0.85rem;
+    }
+
+    .tutorial-close-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 1.3rem;
+        top: 6px;
+        right: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tutorial-tooltip {
+        max-width: calc(100vw - 2rem);
+        padding: 0.65rem 0.75rem;
+    }
+
+    .tutorial-hand {
+        font-size: 1.4rem;
+    }
+
+    .tutorial-title {
+        font-size: 0.9rem;
+    }
+
+    .tutorial-message {
+        font-size: 0.8rem;
+    }
+
+    .tutorial-progress {
+        font-size: 0.7rem;
+    }
+
+    .tutorial-buttons .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .tutorial-close-btn {
+        width: 22px;
+        height: 22px;
+        font-size: 1.2rem;
+        top: 5px;
+        right: 5px;
+    }
+}
+
+@media (max-width: 360px) {
+    .tutorial-tooltip {
+        max-width: calc(100vw - 1.5rem);
+    }
+
+    .tutorial-hand {
+        font-size: 1.2rem;
+    }
+
+    .tutorial-title {
+        font-size: 0.85rem;
+    }
+
+    .tutorial-message {
+        font-size: 0.75rem;
+    }
 }
